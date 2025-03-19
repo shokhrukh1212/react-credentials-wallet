@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import branding from '../../branding'
+import branding from '@src/branding'
 import './Navbar.less'
 
 export const Navbar: React.FC = () => {

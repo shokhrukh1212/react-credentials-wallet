@@ -30,6 +30,7 @@ export default defineConfig(({ mode }) => {
         resolve: {
             alias: {
                 '@style': 'shared-ui/styles',
+                '@src': path.resolve(__dirname, './src'),
             },
         },
     }
