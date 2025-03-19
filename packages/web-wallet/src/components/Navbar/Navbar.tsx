@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import branding from '../../branding'
 import './Navbar.less'
 
 export const Navbar: React.FC = () => {
@@ -11,7 +12,7 @@ export const Navbar: React.FC = () => {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <img src="/icons/wallet.svg" alt="Logo" />
+                <img src={branding.logoPath} alt="Logo" />
                 <span>Logo</span>
             </div>
 

@@ -1,15 +1,18 @@
 import './style.less'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { useSetTitle } from './hooks/useSetTitle.ts'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import { Credentials } from './pages/Credentials.tsx'
 import { CredentialDetails } from './pages/CredentialDetails.tsx'
-import { Home } from './pages/Home.tsx'
 import { Navbar } from './components/index.ts'
+
 function App() {
+    useSetTitle()
+
     return (
         <BrowserRouter>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Navigate to="/credentials" />} />
                 <Route path="/credentials" element={<Credentials />} />
                 <Route
                     path="/credential-details"
