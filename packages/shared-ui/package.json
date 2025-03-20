@@ -4,7 +4,8 @@
     "version": "0.0.0",
     "type": "module",
     "exports": {
-        "./styles/*": "./src/styles/*"
+        "./styles/variables.less": "./src/styles/variables.less",
+        "./styles/mixins.less": "./src/styles/mixins.less"
     },
     "scripts": {
         "dev": "vite",

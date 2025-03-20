@@ -5,3 +5,4 @@
 declare module 'eslint-config-airbnb'
 declare module 'eslint-config-airbnb-hooks'
 declare module 'eslint-config-airbnb-typescript'
+declare module 'less-vars-to-js'
