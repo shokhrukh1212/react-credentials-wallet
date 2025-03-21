@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router'
 import branding from '@src/branding'
 import './Navbar.less'
 
@@ -11,10 +12,18 @@ export const Navbar: React.FC = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-logo">
-                <img src={branding.logoPath} alt="Logo" />
-                <span>Logo</span>
-            </div>
+            <Link
+                to="/credentials"
+                style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                }}
+            >
+                <div className="navbar-logo">
+                    <img src={branding.logoPath} alt="Logo" />
+                    <span>Logo</span>
+                </div>
+            </Link>
 
             <button className="language-switcher" onClick={toggleLanguage}>
                 {language}
