@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router'
 import branding from '@src/branding'
 import './Navbar.less'
-import { useNavigate } from 'react-router'
 
 export const Navbar: React.FC = () => {
     const [language, setLanguage] = useState<'EN' | 'FR'>('EN')
-    const navigate = useNavigate()
 
     const toggleLanguage = () => {
         setLanguage((prev: string) => (prev === 'EN' ? 'FR' : 'EN'))
@@ -13,13 +12,18 @@ export const Navbar: React.FC = () => {
 
     return (
         <nav className="navbar">
-            <div
-                className="navbar-logo"
-                onClick={() => navigate('/credentials')}
+            <Link
+                to="/credentials"
+                style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                }}
             >
-                <img src={branding.logoPath} alt="Logo" />
-                <span>Logo</span>
-            </div>
+                <div className="navbar-logo">
+                    <img src={branding.logoPath} alt="Logo" />
+                    <span>Logo</span>
+                </div>
+            </Link>
 
             <button className="language-switcher" onClick={toggleLanguage}>
                 {language}

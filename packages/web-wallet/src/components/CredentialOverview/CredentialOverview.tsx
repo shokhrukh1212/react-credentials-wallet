@@ -1,5 +1,5 @@
-import { CredentialItemProps } from '../../types/common'
-import formatDate from '../../utils/format-date'
+import { CredentialItemProps } from '@src/types/common'
+import formatDate from '@src/utils/format-date'
 
 export const CredentialOverview: React.FC<CredentialItemProps> = ({
     credential,

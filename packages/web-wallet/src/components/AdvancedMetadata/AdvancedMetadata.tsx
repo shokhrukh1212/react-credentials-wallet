@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AdvancedMetadata } from '../../types/common'
+import { AdvancedMetadata } from '@src/types/common'
 
 export const CredentialAdvancedMetadata: React.FC<{
     metadata: AdvancedMetadata

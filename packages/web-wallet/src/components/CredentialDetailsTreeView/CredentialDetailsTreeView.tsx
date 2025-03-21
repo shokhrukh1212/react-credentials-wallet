@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { TreeNodeProps } from '../../types/common'
+import { TreeNodeProps } from '@src/types/common'
 
-const TreeNode: React.FC<{ node: TreeNodeProps; depth?: number }> = ({
-    node,
-    depth = 0,
-}) => {
+const CredentialDetailsTreeNode: React.FC<{
+    node: TreeNodeProps
+    depth?: number
+}> = ({ node, depth = 0 }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
@@ -19,19 +19,23 @@ const TreeNode: React.FC<{ node: TreeNodeProps; depth?: number }> = ({
 
             {isOpen &&
                 node.items?.map((node: TreeNodeProps, index: number) => (
-                    <TreeNode key={index} node={node} depth={depth + 1} />
+                    <CredentialDetailsTreeNode
+                        key={index}
+                        node={node}
+                        depth={depth + 1}
+                    />
                 ))}
         </div>
     )
 }
 
-export const TreeView: React.FC<{ details: TreeNodeProps[] }> = ({
-    details,
-}) => {
+export const CredentialDetailsTreeView: React.FC<{
+    details: TreeNodeProps[]
+}> = ({ details }) => {
     return (
         <div>
             {details.map((item, index) => (
-                <TreeNode key={index} node={item} />
+                <CredentialDetailsTreeNode key={index} node={item} />
             ))}
         </div>
     )

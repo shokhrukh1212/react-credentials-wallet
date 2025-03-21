@@ -18,6 +18,7 @@ export const Credentials: React.FC = () => {
                             key={credential.id}
                             credential={credential}
                             isClickable={true}
+                            to={`/credential-details/${credential.id}`}
                         />
                     ))}
                 </div>
