@@ -1,2 +1,2 @@
-export { Credentials } from './Credentials'
-export { CredentialDetails } from './CredentialDetails'
+export { CredentialsPage } from './Credentials'
+export { CredentialDetailsPage } from './CredentialDetails'

@@ -1,11 +1,12 @@
 import { CredentialItemProps } from '../../types/common'
 import formatDate from '../../utils/format-date'
+import './CredentialOverview.less'
 
 export const CredentialOverview: React.FC<CredentialItemProps> = ({
     credential,
 }) => {
     return (
-        <>
+        <div className="credential-overview">
             <table>
                 <tbody>
                     <tr>
@@ -34,6 +35,6 @@ export const CredentialOverview: React.FC<CredentialItemProps> = ({
                     </tr>
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router'
 import { CredentialItemProps } from '../../types/common'
 import formatDate from '../../utils/format-date'
+import './Credential.less'
 
 export const CredentialItem: React.FC<CredentialItemProps> = ({
     credential,
@@ -10,32 +11,32 @@ export const CredentialItem: React.FC<CredentialItemProps> = ({
 
     return (
         <div
-            style={{
-                cursor: 'pointer',
-                border: '1px solid black',
-                padding: '10px',
-                margin: '10px',
-                pointerEvents: isClickable ? 'auto' : 'none',
-            }}
+            className={`credential-item ${
+                isClickable ? 'credential-item__clickable' : ''
+            }`}
             onClick={() => {
                 navigate(`/credential-details/${credential.id}`)
             }}
         >
             <h2>{credential.metadata.issuer.name}</h2>
+            <p
+                className={`credential-item--status credential-item--status__${credential.status.toLowerCase()}`}
+            >
+                Status - {credential.status}
+            </p>
+            <p>Expires - {formatDate(new Date(credential.expires))}</p>
+            <p>Issued - {formatDate(new Date(credential.issued))}</p>
+            <p>Metadata name - {credential.metadata.credDef.name}</p>
+            <p>
+                Metadata description -{' '}
+                {credential.metadata.credDef.description || 'N/A'}
+            </p>
             {credential.metadata.issuer.logo && (
                 <img
-                    style={{ width: '100px' }}
                     src={credential.metadata.issuer.logo.uri}
                     alt={credential.metadata.issuer.logo.altText}
                 />
             )}
-            <p>Expires - {formatDate(new Date(credential.expires))}</p>
-            <p>Issued - {formatDate(new Date(credential.issued))}</p>
-            <p>Status - {credential.status}</p>
-            <p>Metadata name - {credential.metadata.credDef.name}</p>
-            <p>
-                Metadata description - {credential.metadata.credDef.description}
-            </p>
         </div>
     )
 }

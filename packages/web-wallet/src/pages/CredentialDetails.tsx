@@ -3,7 +3,7 @@ import { useGetCredential } from '../hooks/useGetCredential'
 import { CredentialItem, CredentialOverview, TreeView } from '../components'
 import { CredentialAdvancedMetadata } from '../components'
 
-export const CredentialDetails: React.FC = () => {
+export const CredentialDetailsPage: React.FC = () => {
     const { data, isPending, error } = useGetCredential()
 
     if (isPending) return <p>Loading...</p>

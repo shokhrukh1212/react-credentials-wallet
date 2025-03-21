@@ -1,9 +1,8 @@
 import React from 'react'
 import { useGetCredentials } from '../hooks/useGetCredentials'
-import { CredentialItem } from '../components'
-import { Credential } from '../types/common'
+import { CredentialsView } from '../components'
 
-export const Credentials: React.FC = () => {
+export const CredentialsPage: React.FC = () => {
     const { credentials, isPending, error } = useGetCredentials()
 
     if (isPending) return <p>Loading...</p>
@@ -12,15 +11,7 @@ export const Credentials: React.FC = () => {
     return (
         <>
             {credentials?.length > 0 ? (
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    {credentials?.map((credential: Credential) => (
-                        <CredentialItem
-                            key={credential.id}
-                            credential={credential}
-                            isClickable={true}
-                        />
-                    ))}
-                </div>
+                <CredentialsView credentials={credentials} />
             ) : (
                 <p>Loading...</p>
             )}
