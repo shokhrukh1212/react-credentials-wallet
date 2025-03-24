@@ -13,7 +13,7 @@ export const CredentialsPage: React.FC = () => {
             {credentials?.length > 0 ? (
                 <CredentialsView credentials={credentials} />
             ) : (
-                <p>Loading...</p>
+                <p>No credentials found</p>
             )}
         </>
     )

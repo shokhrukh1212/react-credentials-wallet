@@ -2,9 +2,9 @@ import './style.less'
 import { useSetTitle } from './hooks/useSetTitle.ts'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { CredentialsPage } from './pages/Credentials.tsx'
-import { CredentialDetailsPage } from './pages/CredentialDetails.tsx'
 import { Navbar } from './components/index.ts'
+import { CredentialsPage } from './pages'
+import { CredentialDetailsPage } from './pages'
 
 function App() {
     useSetTitle()
