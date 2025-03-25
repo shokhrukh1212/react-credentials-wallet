@@ -7,11 +7,7 @@ export const TableView: React.FC<CredentialsViewProps> = ({ credentials }) => {
     const containerRef = useScrollPosition('table-view-container')
 
     return (
-        <div
-            ref={containerRef}
-            className="table-view"
-            id="table-view-container"
-        >
+        <div ref={containerRef} className="table-view">
             <table>
                 <thead>
                     <tr>

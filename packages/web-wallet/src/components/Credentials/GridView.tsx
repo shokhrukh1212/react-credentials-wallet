@@ -7,7 +7,7 @@ export const GridView: React.FC<CredentialsViewProps> = ({ credentials }) => {
     const containerRef = useScrollPosition('grid-view-container')
 
     return (
-        <div ref={containerRef} className="grid-view" id="grid-view-container">
+        <div ref={containerRef} className="grid-view">
             {credentials?.map((credential: Credential) => (
                 <CredentialItem
                     key={credential.id}
