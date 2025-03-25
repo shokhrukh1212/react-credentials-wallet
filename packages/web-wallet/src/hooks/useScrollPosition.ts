@@ -13,9 +13,7 @@ export const useScrollPosition = (containerId: string) => {
     }
 
     function handleScroll() {
-        console.log('here')
         const container = document.getElementById(containerId)
-        console.log(container)
         if (container) {
             history.replaceState(
                 { ...history.state, scrollPosition: container.scrollTop },
@@ -30,10 +28,6 @@ export const useScrollPosition = (containerId: string) => {
         if (!container) return
 
         if (history.state?.scrollPosition) {
-            console.log(
-                history.state?.scrollPosition,
-                ' history.state?.scrollPosition'
-            )
             container.scrollTo(0, history.state.scrollPosition)
         }
 
