@@ -9,7 +9,15 @@ import { CredentialDetailsPage } from './pages'
 function App() {
     useSetTitle()
 
-    const queryClient = new QueryClient()
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                staleTime: Infinity,
+                refetchOnWindowFocus: false,
+                refetchOnMount: false,
+            },
+        },
+    })
 
     return (
         <QueryClientProvider client={queryClient}>

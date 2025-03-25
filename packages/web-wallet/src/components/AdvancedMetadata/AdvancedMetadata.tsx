@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { AdvancedMetadata } from '@src/types/common'
+import { CredentialMetadata } from '@src/types/common'
 import './AdvancedMetadata.less'
 
 export const CredentialAdvancedMetadata: React.FC<{
-    metadata: AdvancedMetadata
+    metadata: CredentialMetadata
 }> = ({ metadata }) => {
     const [isOpen, setIsOpen] = useState<boolean>(true)
 

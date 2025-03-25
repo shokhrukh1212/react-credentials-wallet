@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { CredentialsViewProps } from '../../types/common'
+import { useEffect, useState } from 'react'
+import { CredentialsViewProps, Credential } from '@src/types/common'
 import { CredentialsHeader } from '../CredentialsHeader/CredentialsHeader'
 import './CredentialsView.less'
 import { GridView } from './GridView'
@@ -16,6 +16,10 @@ export const CredentialsView: React.FC<CredentialsViewProps> = ({
         revoked: false,
     })
 
+    useEffect(() => {
+        setFilteredCredentials(credentials)
+    }, [credentials])
+
     type FilterKey = keyof typeof activeFilter
 
     const onFilterChange = (filter: FilterKey) => {
@@ -25,12 +29,12 @@ export const CredentialsView: React.FC<CredentialsViewProps> = ({
         }
         const isAnyFilterActive = Object.values(updatedFilter).some(Boolean)
 
-        const filtered = credentials.filter((credential) => {
+        const filtered = credentials.filter((credential: Credential) => {
             if (!isAnyFilterActive) {
                 return true
             }
 
-            return updatedFilter[credential.status]
+            return updatedFilter[credential.overview.status as FilterKey]
         })
 
         setFilteredCredentials(filtered)

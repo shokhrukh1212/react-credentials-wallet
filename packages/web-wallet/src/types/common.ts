@@ -12,12 +12,23 @@ export interface CredentialMetadata {
     }
 }
 
-export interface Credential {
-    id: string
+export interface CredentialDetails {
+    name: string
+    value?: string | null
+    items?: CredentialDetails[]
+}
+
+interface CredentialOverview {
+    metadata: CredentialMetadata
     issued: Date
     expires: Date
     status: 'active' | 'expired' | 'revoked'
-    metadata: CredentialMetadata
+}
+
+export interface Credential {
+    id: string
+    overview: CredentialOverview
+    details: CredentialDetails[]
 }
 
 export interface CredentialItemProps {
@@ -28,12 +39,6 @@ export interface CredentialItemProps {
 
 export interface CredentialsViewProps {
     credentials: Credential[]
-}
-
-export interface TreeNodeProps {
-    name: string
-    value?: string | null
-    items?: TreeNodeProps[]
 }
 
 export interface AdvancedMetadata {
@@ -54,3 +59,5 @@ export interface CredentialsHeaderProps {
     onFilterChange: (filter: 'active' | 'expired' | 'revoked') => void
     onToggleView: () => void
 }
+
+// ................

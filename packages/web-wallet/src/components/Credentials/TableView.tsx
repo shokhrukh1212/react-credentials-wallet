@@ -1,5 +1,5 @@
-import { CredentialsViewProps } from '../../types/common'
-import formatDate from '../../utils/format-date'
+import { CredentialsViewProps, Credential } from '@src/types/common'
+import formatDate from '@src/utils/format-date'
 import './TableView.less'
 
 export const TableView: React.FC<CredentialsViewProps> = ({ credentials }) => {
@@ -18,23 +18,30 @@ export const TableView: React.FC<CredentialsViewProps> = ({ credentials }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {credentials.map((credential) => (
-                        <tr key={credential.id}>
-                            <td>{credential.metadata.credDef.name}</td>
-                            <td>{'v14.1'}</td>
-                            <td>{credential.metadata.credDef.description}</td>
-                            <td>{credential.metadata.issuer.name}</td>
-                            <td>{formatDate(new Date(credential.issued))}</td>
-                            <td>{formatDate(new Date(credential.expires))}</td>
-                            <td>
-                                <span
-                                    className={`table-view--status ${credential.status.toLowerCase()}`}
-                                >
-                                    {credential.status}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
+                    {credentials.map((credential: Credential) => {
+                        const {
+                            id,
+                            overview: { metadata, issued, expires, status },
+                        } = credential
+
+                        return (
+                            <tr key={id}>
+                                <td>{metadata.credDef.name}</td>
+                                <td>{'v14.1'}</td>
+                                <td>{metadata.credDef.description}</td>
+                                <td>{metadata.issuer.name}</td>
+                                <td>{formatDate(new Date(issued))}</td>
+                                <td>{formatDate(new Date(expires))}</td>
+                                <td>
+                                    <span
+                                        className={`table-view--status ${status.toLowerCase()}`}
+                                    >
+                                        {status}
+                                    </span>
+                                </td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </div>

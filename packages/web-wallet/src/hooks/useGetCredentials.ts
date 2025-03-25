@@ -7,5 +7,5 @@ export const useGetCredentials = () => {
         queryFn: getCredentials,
     })
 
-    return { credentials: data?.items, isPending, error }
+    return { credentials: data, isPending, error }
 }

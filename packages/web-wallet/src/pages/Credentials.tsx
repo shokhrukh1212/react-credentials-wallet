@@ -1,4 +1,3 @@
-import React from 'react'
 import { useGetCredentials } from '../hooks/useGetCredentials'
 import { CredentialsView } from '../components'
 

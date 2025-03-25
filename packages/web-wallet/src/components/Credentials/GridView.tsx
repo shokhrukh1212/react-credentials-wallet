@@ -1,4 +1,4 @@
-import { Credential, CredentialsViewProps } from '../../types/common'
+import { Credential, CredentialsViewProps } from '@src/types/common'
 import { CredentialItem } from '../Credential/Credential'
 import './GridView.less'
 
