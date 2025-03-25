@@ -1,34 +1,33 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { throttle } from '../utils/throttle'
 
 export const useScrollPosition = (containerId: string) => {
-    const throttle = (func: (...args: any[]) => void, delay: number) => {
-        let lastCall = 0
-        return (...args: any[]) => {
-            const now = Date.now()
-            if (now - lastCall >= delay) {
-                func.apply(this, args)
-                lastCall = now
-            }
-        }
-    }
+    const containerRef = useRef<HTMLDivElement | null>(null)
 
     function handleScroll() {
-        const container = document.getElementById(containerId)
-        if (container) {
+        if (containerRef.current) {
             history.replaceState(
-                { ...history.state, scrollPosition: container.scrollTop },
+                {
+                    ...history.state,
+                    scrollPositions: {
+                        ...history.state?.scrollPositions,
+                        [containerRef.current.id]:
+                            containerRef.current.scrollTop,
+                    },
+                },
                 ''
             )
         }
     }
 
     useEffect(() => {
-        const container = document.getElementById(containerId)
+        const container = containerRef.current
 
         if (!container) return
 
-        if (history.state?.scrollPosition) {
-            container.scrollTo(0, history.state.scrollPosition)
+        const savedPosition = history.state?.scrollPositions?.[container.id]
+        if (savedPosition) {
+            container.scrollTo(0, savedPosition)
         }
 
         const throttledHandleScroll = throttle(handleScroll, 100)
@@ -39,5 +38,5 @@ export const useScrollPosition = (containerId: string) => {
         }
     }, [containerId])
 
-    return {}
+    return containerRef
 }

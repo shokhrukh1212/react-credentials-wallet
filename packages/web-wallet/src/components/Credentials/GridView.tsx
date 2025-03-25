@@ -4,10 +4,10 @@ import { CredentialItem } from '../Credential/Credential'
 import './GridView.less'
 
 export const GridView: React.FC<CredentialsViewProps> = ({ credentials }) => {
-    useScrollPosition('grid-view-container')
+    const containerRef = useScrollPosition('grid-view-container')
 
     return (
-        <div className="grid-view" id="grid-view-container">
+        <div ref={containerRef} className="grid-view" id="grid-view-container">
             {credentials?.map((credential: Credential) => (
                 <CredentialItem
                     key={credential.id}

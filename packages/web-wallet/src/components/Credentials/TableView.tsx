@@ -4,10 +4,14 @@ import formatDate from '@src/utils/format-date'
 import './TableView.less'
 
 export const TableView: React.FC<CredentialsViewProps> = ({ credentials }) => {
-    useScrollPosition('table-view-container')
+    const containerRef = useScrollPosition('table-view-container')
 
     return (
-        <div className="table-view" id="table-view-container">
+        <div
+            ref={containerRef}
+            className="table-view"
+            id="table-view-container"
+        >
             <table>
                 <thead>
                     <tr>
