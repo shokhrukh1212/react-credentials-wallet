@@ -10,11 +10,7 @@ export const CredentialItem: React.FC<CredentialItemProps> = ({
 }) => {
     return (
         <Link to={to} className="credential-item__link">
-            <div
-                className={`credential-item ${
-                    isClickable ? 'credential-item__clickable' : ''
-                }`}
-            >
+            <div className={'credential-item'}>
                 <h2>{credential.metadata.issuer.name}</h2>
                 <p
                     className={`credential-item--status credential-item--status__${credential.status.toLowerCase()}`}
