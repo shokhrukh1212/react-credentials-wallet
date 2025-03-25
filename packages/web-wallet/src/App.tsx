@@ -2,9 +2,9 @@ import './style.less'
 import { useSetTitle } from './hooks/useSetTitle.ts'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Credentials } from './pages/Credentials.tsx'
-import { CredentialDetails } from './pages/CredentialDetails.tsx'
 import { Navbar } from './components/index.ts'
+import { CredentialsPage } from './pages'
+import { CredentialDetailsPage } from './pages'
 
 function App() {
     useSetTitle()
@@ -17,10 +17,10 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Navigate to="/credentials" />} />
-                    <Route path="/credentials" element={<Credentials />} />
+                    <Route path="/credentials" element={<CredentialsPage />} />
                     <Route
                         path="/credential-details/:id"
-                        element={<CredentialDetails />}
+                        element={<CredentialDetailsPage />}
                     />
                 </Routes>
             </BrowserRouter>

@@ -22,8 +22,11 @@ export interface Credential {
 
 export interface CredentialItemProps {
     credential: Credential
-    isClickable?: boolean
     to?: string
+}
+
+export interface CredentialsViewProps {
+    credentials: Credential[]
 }
 
 export interface TreeNodeProps {
@@ -38,4 +41,15 @@ export interface AdvancedMetadata {
     signingAlgorithm: string
     schema: string
     format: string
+}
+
+export interface CredentialsHeaderProps {
+    activeFilter: {
+        active: boolean
+        expired: boolean
+        revoked: boolean
+    }
+    viewType: 'grid' | 'table'
+    onFilterChange: (filter: 'active' | 'expired' | 'revoked') => void
+    onToggleView: () => void
 }

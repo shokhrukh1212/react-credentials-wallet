@@ -12,14 +12,8 @@ export const Navbar: React.FC = () => {
 
     return (
         <nav className="navbar">
-            <Link
-                to="/credentials"
-                style={{
-                    textDecoration: 'none',
-                    color: 'inherit',
-                }}
-            >
-                <div className="navbar-logo">
+            <Link to="/credentials" className={'navbar-logo-link'}>
+                <div className="navbar-logo-link--content">
                     <img src={branding.logoPath} alt="Logo" />
                     <span>Logo</span>
                 </div>

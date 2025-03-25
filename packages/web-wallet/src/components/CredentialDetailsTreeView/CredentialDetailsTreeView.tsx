@@ -1,19 +1,22 @@
 import { useState } from 'react'
 import { TreeNodeProps } from '@src/types/common'
+import './CredentialDetailsTreeView.less'
 
 const CredentialDetailsTreeNode: React.FC<{
     node: TreeNodeProps
     depth?: number
 }> = ({ node, depth = 0 }) => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     return (
-        <div style={{ paddingLeft: `${depth * 20}px` }}>
+        <div className={`tree-node`}>
             <div
                 onClick={() => setIsOpen(!isOpen)}
-                style={{ cursor: 'pointer' }}
+                className="tree-node--content"
             >
-                {node.items ? (isOpen ? '🔽' : '▶') : ''} {node.name}:{' '}
+                <span>
+                    {node.items ? (isOpen ? '🔽' : '▶') : ''} {node.name}:{' '}
+                </span>
                 {node.value || ''}
             </div>
 
@@ -33,7 +36,8 @@ export const CredentialDetailsTreeView: React.FC<{
     details: TreeNodeProps[]
 }> = ({ details }) => {
     return (
-        <div>
+        <div className="credential-details-tree-view">
+            <h2>Credential Details</h2>
             {details.map((item, index) => (
                 <CredentialDetailsTreeNode key={index} node={item} />
             ))}
