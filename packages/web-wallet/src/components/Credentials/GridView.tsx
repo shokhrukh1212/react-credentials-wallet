@@ -9,7 +9,6 @@ export const GridView: React.FC<CredentialsViewProps> = ({ credentials }) => {
                 <CredentialItem
                     key={credential.id}
                     credential={credential}
-                    isClickable={true}
                     to={`/credential-details/${credential.id}`}
                 />
             ))}

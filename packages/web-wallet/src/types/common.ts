@@ -22,7 +22,6 @@ export interface Credential {
 
 export interface CredentialItemProps {
     credential: Credential
-    isClickable?: boolean
     to?: string
 }
 

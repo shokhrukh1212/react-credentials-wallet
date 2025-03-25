@@ -5,7 +5,6 @@ import './Credential.less'
 
 export const CredentialItem: React.FC<CredentialItemProps> = ({
     credential,
-    isClickable = false,
     to,
 }) => {
     return (
