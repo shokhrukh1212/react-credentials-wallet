@@ -13,8 +13,6 @@ function App() {
         defaultOptions: {
             queries: {
                 staleTime: Infinity,
-                refetchOnWindowFocus: false,
-                refetchOnMount: false,
             },
         },
     })

@@ -1,23 +1,49 @@
-import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router'
+import { useEffect } from 'react'
 
-export const useScrollPosition = () => {
-    const [scrollPosition, setScrollPosition] = useState<number>(0)
-    const location = useLocation()
-    const scrollRef = useRef({ scrollTop: 0 })
+export const useScrollPosition = (containerId: string) => {
+    const throttle = (func: (...args: any[]) => void, delay: number) => {
+        let lastCall = 0
+        return (...args: any[]) => {
+            const now = Date.now()
+            if (now - lastCall >= delay) {
+                func.apply(this, args)
+                lastCall = now
+            }
+        }
+    }
 
-    const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-        setScrollPosition((event.target as HTMLDivElement).scrollTop)
+    function handleScroll() {
+        console.log('here')
+        const container = document.getElementById(containerId)
+        console.log(container)
+        if (container) {
+            history.replaceState(
+                { ...history.state, scrollPosition: container.scrollTop },
+                ''
+            )
+        }
     }
 
     useEffect(() => {
-        if (location.state) {
-            const { scrollPosition } = location.state
-            setTimeout(() => {
-                scrollRef.current.scrollTop = scrollPosition
-            }, 10)
-        }
-    }, [])
+        const container = document.getElementById(containerId)
 
-    return { scrollRef, handleScroll, scrollPosition }
+        if (!container) return
+
+        if (history.state?.scrollPosition) {
+            console.log(
+                history.state?.scrollPosition,
+                ' history.state?.scrollPosition'
+            )
+            container.scrollTo(0, history.state.scrollPosition)
+        }
+
+        const throttledHandleScroll = throttle(handleScroll, 100)
+        container.addEventListener('scroll', throttledHandleScroll)
+
+        return () => {
+            container.removeEventListener('scroll', throttledHandleScroll)
+        }
+    }, [containerId])
+
+    return {}
 }

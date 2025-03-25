@@ -1,4 +1,3 @@
-import { useScrollPosition } from '@src/hooks/useScrollPosition'
 import { CredentialItemProps } from '@src/types/common'
 import formatDate from '@src/utils/format-date'
 import { Link } from 'react-router'
@@ -8,20 +7,11 @@ export const CredentialItem: React.FC<CredentialItemProps> = ({
     credential,
     to,
 }) => {
-    const { scrollRef, handleScroll, scrollPosition } = useScrollPosition()
     const { metadata, issued, expires, status } = credential.overview
 
     return (
-        <Link
-            to={to}
-            className="credential-item__link"
-            state={{ scrollPosition }}
-        >
-            <div
-                className={'credential-item'}
-                ref={scrollRef}
-                onScroll={handleScroll}
-            >
+        <Link to={to} className="credential-item__link">
+            <div className={'credential-item'}>
                 <h2>{metadata.issuer.name}</h2>
                 <p
                     className={`credential-item--status credential-item--status__${status.toLowerCase()}`}

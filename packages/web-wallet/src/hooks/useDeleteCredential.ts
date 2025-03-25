@@ -21,7 +21,7 @@ export const useDeleteCredential = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['credentials'] })
-            queryClient.refetchQueries({ queryKey: ['credentials'] })
+            // queryClient.refetchQueries({ queryKey: ['credentials'] })
             navigate('/credentials')
         },
     })
