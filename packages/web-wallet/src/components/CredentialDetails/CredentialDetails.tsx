@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, useParams } from 'react-router'
 import { useGetCredential } from '@src/hooks/useGetCredential'
 import { useDeleteCredential } from '@src/hooks/useDeleteCredential'
 import { CredentialItem } from '../Credential/Credential'
@@ -6,7 +7,6 @@ import { CredentialOverview } from '../CredentialOverview/CredentialOverview'
 import { CredentialDetailsTreeView } from '../CredentialDetailsTreeView/CredentialDetailsTreeView'
 import { CredentialAdvancedMetadata } from '../AdvancedMetadata/AdvancedMetadata'
 import './CredentialDetails.less'
-import { Link, useParams } from 'react-router'
 
 export const CredentialDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>()

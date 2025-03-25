@@ -1,5 +1,5 @@
-import { Credential, CredentialsViewProps } from '@src/types/common'
 import { useScrollPosition } from '@src/hooks/useScrollPosition'
+import { Credential, CredentialsViewProps } from '@src/types/common'
 import { CredentialItem } from '../Credential/Credential'
 import './GridView.less'
 

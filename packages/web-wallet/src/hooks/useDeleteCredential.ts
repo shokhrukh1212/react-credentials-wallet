@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { BASE_URL } from '../constants'
 import { useNavigate } from 'react-router'
+import { BASE_URL } from '../constants'
 
 export const useDeleteCredential = () => {
     const queryClient = useQueryClient()
@@ -21,7 +21,6 @@ export const useDeleteCredential = () => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['credentials'] })
-            // queryClient.refetchQueries({ queryKey: ['credentials'] })
             navigate('/credentials')
         },
     })

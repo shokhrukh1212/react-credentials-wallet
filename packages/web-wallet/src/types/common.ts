@@ -54,7 +54,6 @@ export interface CredentialsHeaderProps {
         expired: boolean
         revoked: boolean
     }
-    viewType: 'grid' | 'table'
     onFilterChange: (filter: 'active' | 'expired' | 'revoked') => void
     onToggleView: () => void
 }
