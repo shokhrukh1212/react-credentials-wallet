@@ -6,7 +6,6 @@ import './Credential.less'
 
 export const CredentialItem: React.FC<CredentialItemProps> = ({
     credential,
-    isClickable = false,
     to,
 }) => {
     const { scrollRef, handleScroll, scrollPosition } = useScrollPosition()
@@ -19,9 +18,7 @@ export const CredentialItem: React.FC<CredentialItemProps> = ({
             state={{ scrollPosition }}
         >
             <div
-                className={`credential-item ${
-                    isClickable ? 'credential-item__clickable' : ''
-                }`}
+                className={'credential-item'}
                 ref={scrollRef}
                 onScroll={handleScroll}
             >
