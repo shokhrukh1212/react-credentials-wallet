@@ -1,7 +1,7 @@
 import { BASE_URL } from '../constants'
 export const getCredentials = async () => {
     try {
-        const response = await fetch(`${BASE_URL}/credentials`)
+        const response = await fetch(`${BASE_URL}`)
 
         if (!response.ok) {
             throw new Error('Failed to fetch credentials')

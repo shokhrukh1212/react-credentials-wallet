@@ -1,20 +1,30 @@
-import { useState } from 'react'
-import { CredentialsViewProps } from '../../types/common'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@src/store'
+import { CredentialsViewProps, Credential } from '@src/types/common'
 import { CredentialsHeader } from '../CredentialsHeader/CredentialsHeader'
-import './CredentialsView.less'
 import { GridView } from './GridView'
 import { TableView } from './TableView'
+import { toggleView } from '../../features/table-grid-view/tableGridViewSlice'
+import './CredentialsView.less'
 
 export const CredentialsView: React.FC<CredentialsViewProps> = ({
     credentials,
 }) => {
     const [filteredCredentials, setFilteredCredentials] = useState(credentials)
-    const [viewType, setViewType] = useState<'grid' | 'table'>('grid')
     const [activeFilter, setActiveFilter] = useState({
         active: false,
         expired: false,
         revoked: false,
     })
+    const tablegridview = useSelector(
+        (state: RootState) => state.tablegridview.value
+    )
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        setFilteredCredentials(credentials)
+    }, [credentials])
 
     type FilterKey = keyof typeof activeFilter
 
@@ -25,12 +35,12 @@ export const CredentialsView: React.FC<CredentialsViewProps> = ({
         }
         const isAnyFilterActive = Object.values(updatedFilter).some(Boolean)
 
-        const filtered = credentials.filter((credential) => {
+        const filtered = credentials.filter((credential: Credential) => {
             if (!isAnyFilterActive) {
                 return true
             }
 
-            return updatedFilter[credential.status]
+            return updatedFilter[credential.overview.status as FilterKey]
         })
 
         setFilteredCredentials(filtered)
@@ -38,21 +48,20 @@ export const CredentialsView: React.FC<CredentialsViewProps> = ({
     }
 
     const onToggleView = () => {
-        setViewType(viewType === 'grid' ? 'table' : 'grid')
+        dispatch(toggleView())
     }
 
     return (
         <div className="credentials">
             <CredentialsHeader
                 activeFilter={activeFilter}
-                viewType={viewType}
                 onFilterChange={onFilterChange}
                 onToggleView={onToggleView}
             />
-            {viewType === 'grid' && (
+            {tablegridview === 'grid' && (
                 <GridView credentials={filteredCredentials} />
             )}
-            {viewType === 'table' && (
+            {tablegridview === 'table' && (
                 <TableView credentials={filteredCredentials} />
             )}
         </div>

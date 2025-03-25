@@ -1,12 +1,17 @@
+import { useSelector } from 'react-redux'
+import { RootState } from '@src/store'
+import { CredentialsHeaderProps } from '@src/types/common'
 import './CredentialsHeader.less'
-import { CredentialsHeaderProps } from '../../types/common'
 
 export const CredentialsHeader: React.FC<CredentialsHeaderProps> = ({
     activeFilter,
-    viewType,
     onFilterChange,
     onToggleView,
 }) => {
+    const tablegridview = useSelector(
+        (state: RootState) => state.tablegridview.value
+    )
+
     return (
         <header>
             <div className="header--filter-buttons">
@@ -46,7 +51,9 @@ export const CredentialsHeader: React.FC<CredentialsHeaderProps> = ({
                 <button
                     onClick={onToggleView}
                     className={
-                        viewType === 'grid' ? 'header--view-toggle__active' : ''
+                        tablegridview === 'grid'
+                            ? 'header--view-toggle__active'
+                            : ''
                     }
                 >
                     <img src="/icons/grid-view.svg" alt="Grid View" />
@@ -54,7 +61,7 @@ export const CredentialsHeader: React.FC<CredentialsHeaderProps> = ({
                 <button
                     onClick={onToggleView}
                     className={
-                        viewType === 'table'
+                        tablegridview === 'table'
                             ? 'header--view-toggle__active'
                             : ''
                     }

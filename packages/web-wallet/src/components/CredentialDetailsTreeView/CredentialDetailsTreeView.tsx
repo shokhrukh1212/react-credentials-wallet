@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { TreeNodeProps } from '@src/types/common'
+import { CredentialDetails } from '@src/types/common'
+import formatDate from '@src/utils/format-date'
+import { isDate } from '@src/utils/is-date'
 import './CredentialDetailsTreeView.less'
 
 const CredentialDetailsTreeNode: React.FC<{
-    node: TreeNodeProps
+    node: CredentialDetails
     depth?: number
 }> = ({ node, depth = 0 }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -15,13 +17,16 @@ const CredentialDetailsTreeNode: React.FC<{
                 className="tree-node--content"
             >
                 <span>
-                    {node.items ? (isOpen ? '🔽' : '▶') : ''} {node.name}:{' '}
+                    {node.items?.length > 0 ? (isOpen ? '🔽' : '▶') : ''}{' '}
+                    {node.name}:{' '}
                 </span>
-                {node.value || ''}
+                {isDate(node.value)
+                    ? formatDate(new Date(node.value))
+                    : node.value || ''}
             </div>
 
             {isOpen &&
-                node.items?.map((node: TreeNodeProps, index: number) => (
+                node.items?.map((node: CredentialDetails, index: number) => (
                     <CredentialDetailsTreeNode
                         key={index}
                         node={node}
@@ -33,7 +38,7 @@ const CredentialDetailsTreeNode: React.FC<{
 }
 
 export const CredentialDetailsTreeView: React.FC<{
-    details: TreeNodeProps[]
+    details: CredentialDetails[]
 }> = ({ details }) => {
     return (
         <div className="credential-details-tree-view">

@@ -1,12 +1,13 @@
-@text-color: #333;
-@bg-color: #f8f9fa;
+@import '@style/variables.less';
 @import '@style/mixins.less';
 
 .navbar {
     .flex-layout(space-between, center);
     align-items: center;
     padding: 12px 20px;
-    background: @bg-color;
+    position: sticky;
+    top: 0;
+    background: @nav-bg-color;
     border-bottom: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
@@ -27,7 +28,7 @@
             span {
                 font-size: 18px;
                 font-weight: bold;
-                color: @text-color;
+                color: @nav-text-color;
             }
 
             &:hover {
@@ -36,19 +37,27 @@
         }
     }
 
-    .language-switcher {
-        background: @primary-color;
-        padding: 8px 16px;
-        border: none;
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background 0.3s ease;
+    .navbar--buttons {
+        .navbar--buttons--language-switcher,
+        .navbar--buttons--add-credential {
+            background: @primary-color;
+            padding: 8px 16px;
+            margin-left: 1rem;
+            border: none;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
 
-        &:hover {
-            background: darken(@primary-color, 10%);
+            &:hover {
+                background: darken(@primary-color, 10%);
+            }
+        }
+
+        .navbar--buttons--add-credential {
+            background-color: @secondary-color;
         }
     }
 }
