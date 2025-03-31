@@ -5,7 +5,7 @@ import { CredentialsViewProps, Credential } from '@src/types/common'
 import { CredentialsHeader } from '../CredentialsHeader/CredentialsHeader'
 import { GridView } from './GridView'
 import { TableView } from './TableView'
-import { toggleView } from '../../features/table-grid-view/tableGridViewSlice'
+import { toggleView } from '@src/features/table-grid-view/tableGridViewSlice'
 import './CredentialsView.less'
 
 export const CredentialsView: React.FC<CredentialsViewProps> = ({

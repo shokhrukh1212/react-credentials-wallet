@@ -1,0 +1,56 @@
+@import '@style/variables.less';
+
+.details-list {
+    .detail-item {
+        padding: 12px;
+        border: 1px solid #000;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        background-color: #fff;
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .detail-header--checkbox {
+                input {
+                    margin-right: 5px;
+                }
+            }
+
+            .detail-header--arrow {
+                cursor: pointer;
+
+                span {
+                    font-weight: bold;
+                    background-color: @secondary-color;
+                    padding: 6px 5px;
+                    border-radius: 8px;
+                    color: #fff;
+                }
+            }
+        }
+
+        .detail-name {
+            font-weight: 500;
+        }
+
+        .detail-value {
+            margin-left: 8px;
+            font-weight: bold;
+            padding-right: 40%;
+        }
+
+        .nested-items {
+            margin-top: 8px;
+            padding-left: 16px;
+            border-left: 2px solid #ddd;
+
+            .detail-item {
+                border: none;
+                margin-bottom: 4px;
+            }
+        }
+    }
+}

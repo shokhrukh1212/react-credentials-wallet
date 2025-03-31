@@ -39,7 +39,8 @@
 
     .navbar--buttons {
         .navbar--buttons--language-switcher,
-        .navbar--buttons--add-credential {
+        .navbar--buttons--add-credential,
+        .navbar--buttons--present {
             background: @primary-color;
             padding: 8px 16px;
             margin-left: 1rem;
@@ -54,6 +55,11 @@
             &:hover {
                 background: darken(@primary-color, 10%);
             }
+        }
+
+        .navbar--buttons--present {
+            text-decoration: none;
+            background-color: @secondary-color;
         }
 
         .navbar--buttons--add-credential {

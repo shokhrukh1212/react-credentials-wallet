@@ -22,6 +22,9 @@ export const Navbar: React.FC = () => {
             </Link>
 
             <div className="navbar--buttons">
+                <Link to="/present" className="navbar--buttons--present">
+                    Present
+                </Link>
                 <button
                     className="navbar--buttons--add-credential"
                     onClick={addCredential}

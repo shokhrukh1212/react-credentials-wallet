@@ -8,7 +8,7 @@ export const useDeleteCredential = () => {
 
     return useMutation({
         mutationFn: async (id) => {
-            const response = await fetch(`${BASE_URL}/${id}`, {
+            const response = await fetch(`${BASE_URL}/credentials/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
             })
