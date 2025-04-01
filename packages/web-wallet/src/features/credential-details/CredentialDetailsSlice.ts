@@ -13,6 +13,12 @@ export const credentialDetailsSlice = createSlice({
     name: 'credentialDetails',
     initialState,
     reducers: {
+        initializeSelectedNodes: (
+            state,
+            action: PayloadAction<Record<string, boolean>>
+        ) => {
+            state.selectedNodes = action.payload
+        },
         toggleNode: (
             state,
             action: PayloadAction<{ nodeId: string; checked: boolean }>
@@ -51,5 +57,6 @@ export const credentialDetailsSlice = createSlice({
     },
 })
 
-export const { toggleNode, toggleParentNode } = credentialDetailsSlice.actions
+export const { initializeSelectedNodes, toggleNode, toggleParentNode } =
+    credentialDetailsSlice.actions
 export default credentialDetailsSlice.reducer

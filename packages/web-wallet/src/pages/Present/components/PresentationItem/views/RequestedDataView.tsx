@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@src/store'
 import { CredentialDetails } from '@src/types/common'
@@ -9,10 +9,13 @@ import {
     toggleParentNode,
 } from '@src/features/credential-details/credentialDetailsSlice'
 import { checkAllChildrenSelected } from '@src/utils/is-all-selected'
+import { initializeSelectedNodes } from '@src/features/credential-details/credentialDetailsSlice'
+import { initializeNodes } from '@src/utils/initialize-nodes'
 import './RequestedDataView.less'
 
 interface CredentialListProps {
     details: CredentialDetails[]
+    dataId: string
 }
 
 const RequestedDataViewNode: React.FC<{
@@ -22,7 +25,7 @@ const RequestedDataViewNode: React.FC<{
     const [isOpen, setIsOpen] = useState<boolean>(true)
 
     const dispatch: AppDispatch = useDispatch()
-    const currentPath = [...path, node.name]
+    const currentPath = [...path, node.name.split(' ').join('_')]
     const nodeId = currentPath.join('.')
     const selectedNodes = useSelector(
         (state: RootState) => state.credentialDetails.selectedNodes
@@ -91,11 +94,24 @@ const RequestedDataViewNode: React.FC<{
 
 export const RequestedDataView: React.FC<CredentialListProps> = ({
     details,
+    dataId,
 }) => {
+    const dispatch: AppDispatch = useDispatch()
+
+    // Initialize selectedNodes in Redux based on the details array
+    useEffect(() => {
+        const nodes = initializeNodes(details, [dataId])
+        dispatch(initializeSelectedNodes(nodes))
+    }, [details, dataId, dispatch])
+
     return (
         <div className="details-list">
             {details.map((detail, index) => (
-                <RequestedDataViewNode node={detail} key={index} path={[]} />
+                <RequestedDataViewNode
+                    node={detail}
+                    key={index}
+                    path={[dataId]}
+                />
             ))}
         </div>
     )

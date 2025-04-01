@@ -8,7 +8,7 @@ import './Presentation.less'
 
 export const Presentation: React.FC = () => {
     const { data, isPending, error } = useGetPresent()
-    const [currentStep, setCurrentStep] = useState(1)
+    const [currentStep, setCurrentStep] = useState(0)
 
     if (isPending) return <p>Loading...</p>
     if (error) return <p>Error: {error.message}</p>
@@ -33,7 +33,10 @@ export const Presentation: React.FC = () => {
                         steps={data?.allRequestedFields}
                         currentStep={currentStep - 1}
                     />
-                    <PresentationItem data={data?.inputs[currentStep - 1]} />
+                    <PresentationItem
+                        data={data?.inputs[currentStep - 1]}
+                        step={currentStep}
+                    />
                     <PresentationFooterButtons
                         currentStep={currentStep}
                         length={data?.inputs.length}
