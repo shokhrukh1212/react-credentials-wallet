@@ -1,4 +1,3 @@
-// import { PresentationCredentialsViewProps } from '@src/types/common'
 import { PresentationCredentialsViewProps } from '@src/types/common'
 import './CredentialsView.less'
 

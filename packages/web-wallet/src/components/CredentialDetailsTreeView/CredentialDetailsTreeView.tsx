@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CredentialDetails } from '@src/types/common'
-import formatDate from '@src/utils/format-date'
+import { formatDate } from '@src/utils/format-date'
 import { isDate } from '@src/utils/is-date'
 import './CredentialDetailsTreeView.less'
 

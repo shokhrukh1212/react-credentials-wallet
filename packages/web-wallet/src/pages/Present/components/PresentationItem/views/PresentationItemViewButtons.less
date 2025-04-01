@@ -1,0 +1,23 @@
+.presentation-item--view-buttons {
+    width: 35%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 3px;
+    background-color: #ddd;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+
+    div {
+        padding: 10px 8px;
+        text-align: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .presentation-item--view-buttons__active {
+        background-color: #fff;
+        border-radius: 8px;
+    }
+}

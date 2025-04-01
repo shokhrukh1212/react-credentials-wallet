@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@src/store'
 import { CredentialDetails } from '@src/types/common'
 import { isDate } from '@src/utils/is-date'
-import formatDate from '@src/utils/format-date'
+import { formatDate } from '@src/utils/format-date'
 import {
     toggleNode,
     toggleParentNode,

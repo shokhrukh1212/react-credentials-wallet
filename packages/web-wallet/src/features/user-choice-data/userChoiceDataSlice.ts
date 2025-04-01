@@ -26,13 +26,13 @@ export const userChoiceDataSlice = createSlice({
         ) => {
             const { inputId, credential, details } = action.payload
 
-            const existingIndex = state.data.findIndex(
+            const existingCredentialItemIndex = state.data.findIndex(
                 (item) => item.inputId === inputId
             )
 
-            if (existingIndex !== -1) {
-                state.data[existingIndex].credential = credential
-                state.data[existingIndex].details = details
+            if (existingCredentialItemIndex !== -1) {
+                state.data[existingCredentialItemIndex].credential = credential
+                state.data[existingCredentialItemIndex].details = details
             } else {
                 state.data.push({ inputId, credential, details })
             }

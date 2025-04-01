@@ -1,4 +1,4 @@
-import { Presentation } from '../components'
+import { Presentation } from './components'
 
 export const PresentationPage: React.FC = () => {
     return <Presentation />

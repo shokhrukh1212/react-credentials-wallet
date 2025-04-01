@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { PresentationItemHeader } from './PresentationItemHeader'
-import { CredentialsView } from './CredentialsView'
-import { RequestedDataView } from './RequestedDataView'
 import { PresentationItemViewButtonsProps } from '@src/types/common'
+import {
+    CredentialsView,
+    RequestedDataView,
+    PresentationItemViewButtons,
+} from './views'
 import './PresentationItem.less'
 
 export const PresentationItem: React.FC<{ data: any }> = ({ data }) => {
@@ -39,35 +42,6 @@ export const PresentationItem: React.FC<{ data: any }> = ({ data }) => {
                     }
                 />
             )}
-        </div>
-    )
-}
-
-const PresentationItemViewButtons: React.FC<
-    PresentationItemViewButtonsProps
-> = ({ viewType, onToggleView }) => {
-    return (
-        <div className="presentation-item--view-buttons">
-            <div
-                onClick={onToggleView}
-                className={
-                    viewType === 'credentials'
-                        ? 'presentation-item--view-buttons__active'
-                        : ''
-                }
-            >
-                Credentials
-            </div>
-            <div
-                onClick={onToggleView}
-                className={
-                    viewType === 'data'
-                        ? 'presentation-item--view-buttons__active'
-                        : ''
-                }
-            >
-                Data to share
-            </div>
         </div>
     )
 }

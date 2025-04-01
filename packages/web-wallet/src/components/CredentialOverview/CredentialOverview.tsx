@@ -1,5 +1,5 @@
 import { Credential } from '@src/types/common'
-import formatDate from '@src/utils/format-date'
+import { formatDate } from '@src/utils/format-date'
 import './CredentialOverview.less'
 
 export const CredentialOverview: React.FC<{ credential: Credential }> = ({

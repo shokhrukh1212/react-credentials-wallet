@@ -1,6 +1,6 @@
 import { useScrollPosition } from '@src/hooks/useScrollPosition'
 import { CredentialsViewProps, Credential } from '@src/types/common'
-import formatDate from '@src/utils/format-date'
+import { formatDate } from '@src/utils/format-date'
 import './TableView.less'
 
 export const TableView: React.FC<CredentialsViewProps> = ({ credentials }) => {
