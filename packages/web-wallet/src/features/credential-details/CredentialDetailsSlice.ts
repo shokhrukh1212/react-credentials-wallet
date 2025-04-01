@@ -17,16 +17,17 @@ export const credentialDetailsSlice = createSlice({
             state,
             action: PayloadAction<Record<string, boolean>>
         ) => {
-            state.selectedNodes = action.payload
+            state.selectedNodes = {
+                ...state.selectedNodes,
+                ...action.payload,
+            }
         },
         toggleNode: (
             state,
             action: PayloadAction<{ nodeId: string; checked: boolean }>
         ) => {
             const { nodeId, checked } = action.payload
-            state.selectedNodes[nodeId] = state.selectedNodes[nodeId]
-                ? !state.selectedNodes[nodeId]
-                : checked
+            state.selectedNodes[nodeId] = checked
         },
         toggleParentNode: (
             state,
@@ -43,9 +44,11 @@ export const credentialDetailsSlice = createSlice({
                 currentPath: string[]
             ) => {
                 items.forEach((item) => {
-                    const itemPath = [...currentPath, item.name]
+                    const itemPath = [
+                        ...currentPath,
+                        item.name.split(' ').join('_'),
+                    ]
                     state.selectedNodes[itemPath.join('.')] = checked
-                    item.selected = state.selectedNodes[itemPath.join('.')]
                     if (item.items) {
                         setChildren(item.items, itemPath)
                     }

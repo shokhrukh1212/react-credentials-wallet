@@ -97,12 +97,20 @@ export const RequestedDataView: React.FC<CredentialListProps> = ({
     dataId,
 }) => {
     const dispatch: AppDispatch = useDispatch()
+    const selectedNodes = useSelector(
+        (state: RootState) => state.credentialDetails.selectedNodes
+    )
 
     // Initialize selectedNodes in Redux based on the details array
     useEffect(() => {
-        const nodes = initializeNodes(details, [dataId])
-        dispatch(initializeSelectedNodes(nodes))
-    }, [details, dataId, dispatch])
+        const hasInitializedNodes = Object.keys(selectedNodes).some((key) =>
+            key.startsWith(`${dataId}.`)
+        )
+        if (!hasInitializedNodes) {
+            const nodes = initializeNodes(details, [dataId])
+            dispatch(initializeSelectedNodes(nodes))
+        }
+    }, [details, dataId, dispatch, selectedNodes])
 
     return (
         <div className="details-list">
