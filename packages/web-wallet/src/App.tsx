@@ -4,7 +4,11 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { store, persistor } from './store'
 import { Navbar } from './components/index.ts'
-import { CredentialsPage, CredentialDetailsPage } from './pages'
+import {
+    CredentialsPage,
+    CredentialDetailsPage,
+    PresentationPage,
+} from './pages'
 import { useSetTitle } from './hooks/useSetTitle.ts'
 import './style.less'
 
@@ -40,6 +44,10 @@ function App() {
                             <Route
                                 path="/credential-details/:id"
                                 element={<CredentialDetailsPage />}
+                            />
+                            <Route
+                                path="/present"
+                                element={<PresentationPage />}
                             />
                         </Routes>
                     </BrowserRouter>

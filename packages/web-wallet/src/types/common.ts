@@ -16,6 +16,7 @@ export interface CredentialDetails {
     name: string
     value?: string | null
     items?: CredentialDetails[]
+    selected?: boolean
 }
 
 interface CredentialOverview {
@@ -58,4 +59,35 @@ export interface CredentialsHeaderProps {
     onToggleView: () => void
 }
 
-// ................
+export interface PresentationStepsProps {
+    steps: string[]
+    currentStep: number
+}
+
+export interface PresentationItemHeaderProps {
+    credentialType: string
+    requestedData: string[]
+}
+
+export interface PresentationCredentialsViewProps {
+    data: {
+        overview: CredentialOverview
+        details: CredentialDetails[]
+    }[]
+    selected: number
+    setSelected: (selected: number) => void
+}
+
+export interface PresentationFooterButtonsProps {
+    currentStep: number
+    length: number
+    onReject: () => void
+    onNext: () => void
+    onGrantAccess: () => void
+    onBack: () => void
+}
+
+export interface PresentationItemViewButtonsProps {
+    viewType: 'credentials' | 'data'
+    onToggleView: () => void
+}

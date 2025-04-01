@@ -1,0 +1,47 @@
+.presentation-footer-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .back {
+        background-color: #eaf2ff;
+        color: #0057ff;
+        border: 1px solid #c6dbff;
+        margin-right: 1rem;
+
+        &:hover {
+            background-color: #d9e9ff;
+        }
+    }
+
+    .reject {
+        background-color: white;
+        color: #ff3b30;
+        border: 1px solid #ff3b30;
+
+        &:hover {
+            background-color: #ffe6e6;
+        }
+    }
+
+    .grant,
+    .next {
+        background-color: #0057ff;
+        color: white;
+
+        &:hover {
+            background-color: #0046cc;
+        }
+    }
+}

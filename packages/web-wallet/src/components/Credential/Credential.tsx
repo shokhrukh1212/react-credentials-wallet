@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { CredentialItemProps } from '@src/types/common'
-import formatDate from '@src/utils/format-date'
+import { formatDate } from '@src/utils/format-date'
 import './Credential.less'
 
 export const CredentialItem: React.FC<CredentialItemProps> = ({

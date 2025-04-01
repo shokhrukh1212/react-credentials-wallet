@@ -14,23 +14,26 @@ export const Navbar: React.FC = () => {
 
     return (
         <nav className="navbar">
-            <Link to="/credentials" className={'navbar-logo-link'}>
-                <div className="navbar-logo-link--content">
+            <Link to="/credentials" className={'navbar__logo-link'}>
+                <div className="navbar__logo-link__content">
                     <img src={branding.logoPath} alt="Logo" />
                     <span>Logo</span>
                 </div>
             </Link>
 
-            <div className="navbar--buttons">
+            <div className="navbar__buttons">
+                <Link to="/present" className="navbar__buttons__present">
+                    Present
+                </Link>
                 <button
-                    className="navbar--buttons--add-credential"
+                    className="navbar__buttons__add-credential"
                     onClick={addCredential}
                 >
                     {isLoading ? 'Adding...' : 'Add credential'}
                 </button>
 
                 <button
-                    className="navbar--buttons--language-switcher"
+                    className="navbar__buttons__language-switcher"
                     onClick={toggleLanguage}
                 >
                     {language}

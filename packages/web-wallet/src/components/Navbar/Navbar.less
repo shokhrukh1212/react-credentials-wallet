@@ -11,11 +11,11 @@
     border-bottom: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
-    .navbar-logo-link {
+    .navbar__logo-link {
         text-decoration: none;
         color: inherit;
 
-        .navbar-logo-link--content {
+        .navbar__logo-link__content {
             .flex-layout(center, center);
 
             gap: 5px;
@@ -37,9 +37,10 @@
         }
     }
 
-    .navbar--buttons {
-        .navbar--buttons--language-switcher,
-        .navbar--buttons--add-credential {
+    .navbar__buttons {
+        .navbar__buttons__language-switcher,
+        .navbar__buttons__add-credential,
+        .navbar__buttons__present {
             background: @primary-color;
             padding: 8px 16px;
             margin-left: 1rem;
@@ -56,7 +57,12 @@
             }
         }
 
-        .navbar--buttons--add-credential {
+        .navbar__buttons__present {
+            text-decoration: none;
+            background-color: @secondary-color;
+        }
+
+        .navbar__buttons__add-credential {
             background-color: @secondary-color;
         }
     }
