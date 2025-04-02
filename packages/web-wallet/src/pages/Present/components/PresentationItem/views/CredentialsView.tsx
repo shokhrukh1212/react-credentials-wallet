@@ -30,7 +30,8 @@ export const CredentialsViewItem: React.FC<{
             className={`credentials-view--item ${selected ? 'active' : ''}`}
             onClick={() => setSelected(!selected)}
         >
-            <input type="radio" checked={selected} />
+            {/* onChange here is just to get rid of browser warning */}
+            <input type="radio" checked={selected} onChange={() => {}} />
             <span className="label">{title}</span>
         </div>
     )

@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useGetPresent } from '@src/hooks/useGetPresent'
+import { RootState } from '@src/store'
 import { PresentationIntroPage } from '../PresentationIntro/PresentationIntro'
 import { PresentationSteps } from '../PresentationSteps/PresentationSteps'
 import { PresentationItem } from '../PresentationItem/PresentationItem'
@@ -9,6 +11,13 @@ import './Presentation.less'
 export const Presentation: React.FC = () => {
     const { data, isPending, error } = useGetPresent()
     const [currentStep, setCurrentStep] = useState(0)
+    const collection = useSelector(
+        (state: RootState) => state.presentStore.collection
+    )
+
+    const onGrantAccess = () => {
+        console.log(collection, ' collection')
+    }
 
     if (isPending) return <p>Loading...</p>
     if (error) return <p>Error: {error.message}</p>
@@ -19,7 +28,7 @@ export const Presentation: React.FC = () => {
             {currentStep === 0 ? (
                 <>
                     <PresentationIntroPage
-                        requestedFields={['Name', 'Email']}
+                        requestedFields={data?.allRequestedFields}
                         onProceed={() => setCurrentStep(1)}
                     />
                     <PresentationFooterButtons
@@ -31,7 +40,7 @@ export const Presentation: React.FC = () => {
                 <>
                     <PresentationSteps
                         steps={data?.allRequestedFields}
-                        currentStep={currentStep - 1}
+                        currentStep={currentStep}
                     />
                     <PresentationItem
                         data={data?.inputs[currentStep - 1]}
@@ -42,7 +51,7 @@ export const Presentation: React.FC = () => {
                         length={data?.inputs.length}
                         onReject={() => setCurrentStep(0)}
                         onNext={() => setCurrentStep(currentStep + 1)}
-                        onGrantAccess={() => setCurrentStep(0)}
+                        onGrantAccess={onGrantAccess}
                         onBack={() => setCurrentStep(currentStep - 1)}
                     />
                 </>

@@ -10,7 +10,7 @@ export const PresentationSteps: React.FC<PresentationStepsProps> = ({
             {steps.map((step: string, index: number) => (
                 <div
                     key={index}
-                    className={`step ${index <= currentStep ? 'active' : ''}`}
+                    className={`step ${index <= currentStep - 1 ? 'active' : ''}`}
                 >
                     {index > 0 && index < steps.length && (
                         <div className="step-line"></div>

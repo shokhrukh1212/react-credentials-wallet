@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@src/store'
 import { CredentialDetails } from '@src/types/common'
 import { isDate } from '@src/utils/is-date'
 import { formatDate } from '@src/utils/format-date'
+import { checkAllChildrenSelected } from '@src/utils/is-all-selected'
 import {
     toggleNode,
     toggleParentNode,
-} from '@src/features/credential-details/credentialDetailsSlice'
-import { checkAllChildrenSelected } from '@src/utils/is-all-selected'
-import { initializeSelectedNodes } from '@src/features/credential-details/credentialDetailsSlice'
-import { initializeNodes } from '@src/utils/initialize-nodes'
+} from '@src/features/present/PresentSlice'
 import './RequestedDataView.less'
 
 interface CredentialListProps {
@@ -28,7 +26,7 @@ const RequestedDataViewNode: React.FC<{
     const currentPath = [...path, node.name.split(' ').join('_')]
     const nodeId = currentPath.join('.')
     const selectedNodes = useSelector(
-        (state: RootState) => state.credentialDetails.selectedNodes
+        (state: RootState) => state.presentStore.selectedNodes
     )
 
     const isParent = node.items && node.items.length > 0
@@ -96,22 +94,6 @@ export const RequestedDataView: React.FC<CredentialListProps> = ({
     details,
     dataId,
 }) => {
-    const dispatch: AppDispatch = useDispatch()
-    const selectedNodes = useSelector(
-        (state: RootState) => state.credentialDetails.selectedNodes
-    )
-
-    // Initialize selectedNodes in Redux based on the details array
-    useEffect(() => {
-        const hasInitializedNodes = Object.keys(selectedNodes).some((key) =>
-            key.startsWith(`${dataId}.`)
-        )
-        if (!hasInitializedNodes) {
-            const nodes = initializeNodes(details, [dataId])
-            dispatch(initializeSelectedNodes(nodes))
-        }
-    }, [details, dataId, dispatch, selectedNodes])
-
     return (
         <div className="details-list">
             {details.map((detail, index) => (
