@@ -21,6 +21,7 @@ export const PresentationIntroPage: React.FC<{
             <div className="presentation-intro--info">
                 <h3>Information requested</h3>
                 <div className="presentation-intro--info__list">
+                    {/* Split the list of requested fields into two columns */}
                     <ul>
                         {requestedFields
                             .slice(0, requestedFields.length / 2)

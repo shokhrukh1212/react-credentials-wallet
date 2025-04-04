@@ -19,7 +19,7 @@ export interface CredentialDetails {
     selected?: boolean
 }
 
-interface CredentialOverview {
+export interface CredentialOverviewState {
     metadata: CredentialMetadata
     issued: Date
     expires: Date
@@ -28,7 +28,7 @@ interface CredentialOverview {
 
 export interface Credential {
     id: string
-    overview: CredentialOverview
+    overview: CredentialOverviewState
     details: CredentialDetails[]
 }
 
@@ -59,11 +59,6 @@ export interface CredentialsHeaderProps {
     onToggleView: () => void
 }
 
-export interface PresentationStepsProps {
-    steps: string[]
-    currentStep: number
-}
-
 export interface PresentationItemHeaderProps {
     credentialType: string
     requestedData: string[]
@@ -71,7 +66,7 @@ export interface PresentationItemHeaderProps {
 
 export interface PresentationCredentialsViewProps {
     data: {
-        overview: CredentialOverview
+        overview: CredentialOverviewState
         details: CredentialDetails[]
     }[]
     selected: number
@@ -81,13 +76,13 @@ export interface PresentationCredentialsViewProps {
 export interface PresentationFooterButtonsProps {
     currentStep: number
     length: number
-    onReject: () => void
-    onNext: () => void
-    onGrantAccess: () => void
-    onBack: () => void
+    onReject?: () => void
+    onNext?: () => void
+    onGrantAccess?: () => void
+    onBack?: () => void
 }
 
 export interface PresentationItemViewButtonsProps {
     viewType: 'credentials' | 'data'
-    onToggleView: () => void
+    onToggleView?: () => void
 }

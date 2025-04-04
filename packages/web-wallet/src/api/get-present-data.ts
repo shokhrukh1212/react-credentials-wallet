@@ -1,4 +1,4 @@
-import { BASE_URL } from '../constants'
+import { BASE_URL } from '@src/constants'
 export const getPresentData = async () => {
     try {
         const response = await fetch(`${BASE_URL}/presentation`)

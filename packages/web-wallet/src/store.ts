@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import tableGridViewReducer from './features/table-grid-view/tableGridViewSlice.ts'
-import credentialDetailsReducer from './features/credential-details/credentialDetailsSlice.ts'
-import userChoiceDataReducer from './features/user-choice-data/userChoiceDataSlice.ts'
+import tableGridViewReducer from './features/table-grid-view/tableGridViewSlice'
+import presentReducer from './features/present/PresentSlice'
 
 const persistConfig = {
     key: 'tablegridview',
@@ -15,8 +14,7 @@ const persistedReducer = persistReducer(persistConfig, tableGridViewReducer)
 export const store = configureStore({
     reducer: {
         tablegridview: persistedReducer,
-        credentialDetails: credentialDetailsReducer,
-        userChoiceData: userChoiceDataReducer,
+        presentStore: presentReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

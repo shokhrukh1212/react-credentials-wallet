@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getCredential } from '../api/get-credential'
+import { getCredential } from '@src/api/get-credential'
 
 export const useGetCredential = (id: string) => {
     const { isPending, error, data } = useQuery({

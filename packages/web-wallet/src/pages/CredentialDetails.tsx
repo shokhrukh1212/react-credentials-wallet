@@ -1,5 +1,5 @@
 import React from 'react'
-import { CredentialDetails } from '../components'
+import { CredentialDetails } from '@src/components'
 
 export const CredentialDetailsPage: React.FC = () => {
     return <CredentialDetails />

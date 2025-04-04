@@ -1,4 +1,4 @@
-import { BASE_URL } from '../constants'
+import { BASE_URL } from '@src/constants'
 export const getCredential = async (id: string) => {
     try {
         const response = await fetch(`${BASE_URL}/credentials/${id}`)
