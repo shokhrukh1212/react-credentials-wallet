@@ -1,6 +1,6 @@
 import { useScrollPosition } from '@src/hooks/useScrollPosition'
 import { Credential, CredentialsViewProps } from '@src/types/common'
-import { CredentialItem } from '../Credential/Credential'
+import { CredentialItem } from '@src/components/Credential/Credential'
 import './GridView.less'
 
 export const GridView: React.FC<CredentialsViewProps> = ({ credentials }) => {

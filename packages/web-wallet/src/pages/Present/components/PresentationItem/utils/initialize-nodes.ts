@@ -1,4 +1,4 @@
-import { CredentialDetails } from '../types/common'
+import { CredentialDetails } from '@src/types/common'
 
 export const initializeNodes = (items: CredentialDetails[], path: string[]) => {
     const nodes: Record<string, boolean> = {}

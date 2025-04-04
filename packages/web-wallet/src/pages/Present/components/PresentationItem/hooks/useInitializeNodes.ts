@@ -1,18 +1,16 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store'
+import { useDispatch } from 'react-redux'
+import { useSelectedNodes } from '@src/hooks/useSelectedNodes'
+import { initializeSelectedNodes } from '@src/features/present/PresentSlice'
+import { CredentialDetails } from '@src/types/common'
 import { initializeNodes } from '../utils/initialize-nodes'
-import { initializeSelectedNodes } from '../features/present/PresentSlice'
-import { CredentialDetails } from '../types/common'
 
 export const useInitializeNodes = (
     dataId: string,
     details: CredentialDetails[]
 ) => {
     const dispatch = useDispatch()
-    const selectedNodes = useSelector(
-        (state: RootState) => state.presentStore.selectedNodes
-    )
+    const selectedNodes = useSelectedNodes()
 
     // Initialize selectedNodes in Redux based on the details array
     useEffect(() => {

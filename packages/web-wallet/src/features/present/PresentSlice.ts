@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CredentialDetails } from '@src/types/common'
 
 interface CollectionState {
-    inputId: string
+    inputId: number
     credential: {
         id: string
         name: string
@@ -11,11 +11,13 @@ interface CollectionState {
 }
 
 interface PresentProps {
+    currentStep: number
     selectedNodes: Record<string, boolean>
     collection: CollectionState[]
 }
 
 const initialState: PresentProps = {
+    currentStep: 0,
     selectedNodes: {},
     collection: [],
 }
@@ -24,6 +26,16 @@ export const presentSlice = createSlice({
     name: 'present',
     initialState,
     reducers: {
+        next: (state) => {
+            state.currentStep++
+        },
+        back: (state) => {
+            console.log(state.currentStep)
+            state.currentStep--
+        },
+        reject: (state) => {
+            state.currentStep = 0
+        },
         initializeSelectedNodes: (
             state,
             action: PayloadAction<Record<string, boolean>>
@@ -76,7 +88,7 @@ export const presentSlice = createSlice({
         setCollectionData: (
             state,
             action: PayloadAction<{
-                inputId: string
+                inputId: number
                 credential: {
                     id: string
                     name: string
@@ -104,6 +116,9 @@ export const presentSlice = createSlice({
 })
 
 export const {
+    reject,
+    back,
+    next,
     initializeSelectedNodes,
     toggleNode,
     toggleParentNode,

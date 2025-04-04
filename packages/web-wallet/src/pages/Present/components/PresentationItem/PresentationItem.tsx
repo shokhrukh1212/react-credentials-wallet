@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useInitializeNodes } from '@src/hooks/useInitializeNodes'
-import { RootState } from '@src/store'
+import { useDispatch } from 'react-redux'
+import { useSelectedNodes } from '@src/hooks/useSelectedNodes'
+import { useInitializeNodes } from './hooks/useInitializeNodes'
 import { PresentationItemHeader } from './PresentationItemHeader'
-import { PresentationItemViewButtonsProps } from '@src/types/common'
 import {
     CredentialsView,
     RequestedDataView,
@@ -17,17 +16,16 @@ export const PresentationItem: React.FC<{ data: any; step: number }> = ({
     data,
     step,
 }) => {
-    const [viewType, setViewType] =
-        useState<PresentationItemViewButtonsProps>('credentials')
+    const [viewType, setViewType] = useState<'credentials' | 'data'>(
+        'credentials'
+    )
     const [selectedCredentialIndex, setSelectedCredentialIndex] = useState<{
         [key: number]: number
     }>({})
 
     const dispatch = useDispatch()
 
-    const selectedNodes = useSelector(
-        (state: RootState) => state.presentStore.selectedNodes
-    )
+    const selectedNodes = useSelectedNodes()
 
     const selectedCredential = useMemo(
         () => data?.credentials[selectedCredentialIndex[step]],
@@ -44,7 +42,10 @@ export const PresentationItem: React.FC<{ data: any; step: number }> = ({
         [selectedCredential]
     )
 
-    // Initialize selectedNodes in Redux based on the details array
+    /*
+     * Initializes selectedNodes in the Redux store based on the provided dataId and details.
+     * Ensures that nodes are only initialized once for a given dataId.
+     * */
     useInitializeNodes(dataId, details)
 
     // Initialize selectedCredentialIndex if undefined

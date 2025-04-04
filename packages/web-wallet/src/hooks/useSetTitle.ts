@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import branding from '../branding'
+import branding from '@src/branding'
 
 export const useSetTitle = () => {
     useEffect(() => {

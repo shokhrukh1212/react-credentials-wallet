@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '@src/store'
+import { useDispatch } from 'react-redux'
+import { useSelectedNodes } from '@src/hooks/useSelectedNodes'
+import { AppDispatch } from '@src/store'
 import { CredentialDetails } from '@src/types/common'
 import { isDate } from '@src/utils/is-date'
 import { formatDate } from '@src/utils/format-date'
@@ -25,9 +26,7 @@ const RequestedDataViewNode: React.FC<{
     const dispatch: AppDispatch = useDispatch()
     const currentPath = [...path, node.name.split(' ').join('_')]
     const nodeId = currentPath.join('.')
-    const selectedNodes = useSelector(
-        (state: RootState) => state.presentStore.selectedNodes
-    )
+    const selectedNodes = useSelectedNodes()
 
     const isParent = node.items && node.items.length > 0
 

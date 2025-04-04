@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import tableGridViewReducer from './features/table-grid-view/tableGridViewSlice.ts'
-import presentReducer from './features/present/PresentSlice.ts'
+import tableGridViewReducer from './features/table-grid-view/tableGridViewSlice'
+import presentReducer from './features/present/PresentSlice'
 
 const persistConfig = {
     key: 'tablegridview',

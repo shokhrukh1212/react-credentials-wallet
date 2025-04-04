@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { throttle } from '../utils/throttle'
+import { throttle } from '@src/utils/throttle'
 
 export const useScrollPosition = (containerId: string) => {
     const containerRef = useRef<HTMLDivElement | null>(null)
