@@ -4,10 +4,13 @@ export const checkAllChildrenSelected = (
 ) => {
     const currentPathPrefix = path.join('.')
 
-    return Object.keys(selectedNodes).every((key) => {
-        if (key.startsWith(currentPathPrefix)) {
-            return selectedNodes[key] === true
-        }
-        return true
-    })
+    const childNodes = Object.keys(selectedNodes).filter((key) =>
+        key.startsWith(currentPathPrefix + '.')
+    )
+
+    if (childNodes.length === 0) {
+        return false
+    }
+
+    return childNodes.every((key) => selectedNodes[key] === true)
 }

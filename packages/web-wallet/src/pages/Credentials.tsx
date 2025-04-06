@@ -1,5 +1,5 @@
-import { useGetCredentials } from '../hooks/useGetCredentials'
-import { CredentialsView } from '../components'
+import { useGetCredentials } from '@src/queries/useGetCredentials'
+import { CredentialsView } from '@src/components'
 
 export const CredentialsPage: React.FC = () => {
     const { credentials, isPending, error } = useGetCredentials()

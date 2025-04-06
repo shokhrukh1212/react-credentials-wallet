@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { useAddCredential } from '@src/hooks/useAddCredential'
+import { useState } from 'react'
+import { useAddCredential } from '@src/queries/useAddCredential'
 import { Link } from 'react-router'
 import branding from '@src/branding'
 import './Navbar.less'
 
 export const Navbar: React.FC = () => {
     const [language, setLanguage] = useState<'EN' | 'FR'>('EN')
-    const { mutate: addCredential, isLoading } = useAddCredential()
+    const { mutate: addCredential, isPending } = useAddCredential()
 
     const toggleLanguage = () => {
         setLanguage((prev: string) => (prev === 'EN' ? 'FR' : 'EN'))
@@ -27,9 +27,9 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <button
                     className="navbar__buttons__add-credential"
-                    onClick={addCredential}
+                    onClick={() => addCredential()}
                 >
-                    {isLoading ? 'Adding...' : 'Add credential'}
+                    {isPending ? 'Adding...' : 'Add credential'}
                 </button>
 
                 <button

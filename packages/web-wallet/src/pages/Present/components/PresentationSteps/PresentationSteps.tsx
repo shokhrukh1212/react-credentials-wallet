@@ -1,23 +1,10 @@
-import { PresentationStepsProps } from '@src/types/common'
-import './PresentationSteps.less'
+import { PresentationStepsProps } from '@shared-ui/types/common'
+import { Stepper } from '@shared-ui/components'
 
+// TODO: remove this component, looks unnecessary
 export const PresentationSteps: React.FC<PresentationStepsProps> = ({
     steps,
     currentStep,
 }) => {
-    return (
-        <div className="steps-header">
-            {steps.map((step: string, index: number) => (
-                <div
-                    key={index}
-                    className={`step ${index <= currentStep ? 'active' : ''}`}
-                >
-                    {index > 0 && index < steps.length && (
-                        <div className="step-line"></div>
-                    )}
-                    <div className="step-number">{index + 1}</div>
-                </div>
-            ))}
-        </div>
-    )
+    return <Stepper steps={steps} currentStep={currentStep} />
 }

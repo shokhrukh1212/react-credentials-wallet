@@ -1,15 +1,15 @@
+import { useSetTitle } from './hooks/useSetTitle'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { store, persistor } from './store'
-import { Navbar } from './components/index.ts'
+import { Navbar } from './components'
 import {
     CredentialsPage,
     CredentialDetailsPage,
     PresentationPage,
 } from './pages'
-import { useSetTitle } from './hooks/useSetTitle.ts'
 import './style.less'
 
 const queryClient = new QueryClient({

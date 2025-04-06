@@ -1,53 +1,47 @@
-import { Credential } from '@src/types/common'
+import { useMemo } from 'react'
+import { CredentialOverviewState } from '@src/types/common'
 import { formatDate } from '@src/utils/format-date'
+import { Table } from '@shared-ui/components'
+import { TableColumn } from '@shared-ui/types/common'
 import './CredentialOverview.less'
 
-export const CredentialOverview: React.FC<{ credential: Credential }> = ({
-    credential,
-}) => {
-    const { metadata, issued, expires } = credential
+export const CredentialOverview: React.FC<{
+    credential: CredentialOverviewState
+}> = ({ credential }) => {
+    const columns: TableColumn<CredentialOverviewState>[] = useMemo(() => {
+        return [
+            {
+                key: 'type',
+                label: 'Type',
+                render: (cred) => cred.metadata.credDef.name,
+            },
+            {
+                key: 'issuer',
+                label: 'Issuer',
+                render: (cred) => cred.metadata.issuer.name,
+            },
+            {
+                key: 'issued',
+                label: 'Issued',
+                render: (cred) => formatDate(new Date(cred.issued)),
+            },
+            {
+                key: 'expires',
+                label: 'Expires',
+                render: (cred) => formatDate(new Date(cred.expires)),
+            },
+            {
+                key: 'description',
+                label: 'Description',
+                render: (cred) => cred.metadata.credDef.description,
+            },
+        ]
+    }, [])
 
     return (
         <div className="credential-overview">
             <h2>Credential Overview</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <span>Type</span>
-                        </td>
-                        <td>{metadata.credDef.name}</td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <span>Issuer</span>
-                        </td>
-                        <td>{metadata.issuer.name}</td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <span>Issued</span>
-                        </td>
-                        <td>{formatDate(new Date(issued))}</td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <span>Expires</span>
-                        </td>
-                        <td>{formatDate(new Date(expires))}</td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <span>Description</span>
-                        </td>
-                        <td>{metadata.credDef.description}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <Table data={credential} columns={columns} mode="keyValue" />
         </div>
     )
 }

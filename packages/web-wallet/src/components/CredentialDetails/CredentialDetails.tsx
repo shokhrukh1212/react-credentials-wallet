@@ -1,16 +1,20 @@
 import React from 'react'
 import { Link, useParams } from 'react-router'
-import { useGetCredential } from '@src/hooks/useGetCredential'
-import { useDeleteCredential } from '@src/hooks/useDeleteCredential'
-import { CredentialItem } from '../Credential/Credential'
-import { CredentialOverview } from '../CredentialOverview/CredentialOverview'
-import { CredentialDetailsTreeView } from '../CredentialDetailsTreeView/CredentialDetailsTreeView'
-import { CredentialAdvancedMetadata } from '../AdvancedMetadata/AdvancedMetadata'
+import { useGetCredential } from '@src/queries/useGetCredential'
+import { useDeleteCredential } from '@src/queries/useDeleteCredential'
+import { CredentialItem } from '@src/components/Credential/Credential'
+import { CredentialOverview } from '@src/components/CredentialOverview/CredentialOverview'
+import { CredentialDetailsTreeView } from '@src/components/CredentialDetailsTreeView/CredentialDetailsTreeView'
+import { Credential } from '@src/types/common'
 import './CredentialDetails.less'
 
 export const CredentialDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>()
-    const { data, isPending, error } = useGetCredential(id)
+    const { data, isPending, error } = useGetCredential(id) as {
+        data: Credential
+        isPending: boolean
+        error: any
+    }
     const { mutate: deleteCredential } = useDeleteCredential()
 
     if (isPending) return <p>Loading...</p>
@@ -18,12 +22,9 @@ export const CredentialDetails: React.FC = () => {
 
     return (
         <div className="credential-details">
-            <CredentialItem credential={data || {}} />
-            <CredentialOverview credential={data?.overview || {}} />
-            <CredentialDetailsTreeView details={data?.details || []} />
-            <CredentialAdvancedMetadata
-                metadata={data?.advancedMetadata || {}}
-            />
+            <CredentialItem credential={data} />
+            <CredentialOverview credential={data?.overview} />
+            <CredentialDetailsTreeView details={data?.details} />
             <Link to={'/credentials'} className="credential-details--link">
                 ⬅️ Back
             </Link>

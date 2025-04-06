@@ -1,0 +1,28 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    th {
+        font-weight: 600;
+    }
+
+    &.keyValue-table {
+        td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .table-label {
+                font-weight: 500;
+                margin-right: 20px;
+            }
+        }
+    }
+}
