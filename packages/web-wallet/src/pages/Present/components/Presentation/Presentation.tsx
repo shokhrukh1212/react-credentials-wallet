@@ -11,6 +11,7 @@ import './Presentation.less'
 export const Presentation: React.FC = () => {
     const { data, isPending, error } = useGetPresent()
 
+    // TODO: put it in a hook called useCurrentStep()
     const currentStep = useSelector(
         (state: RootState) => state.presentStore.currentStep
     )

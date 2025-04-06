@@ -13,7 +13,9 @@ import { collectSelectedDetails } from '@src/utils/collect-details'
 import './PresentationItem.less'
 
 export const PresentationItem: React.FC<{ data: any; step: number }> = ({
+    // TODO: you can get this data from useGetPresent(). No need to take it from prop.
     data,
+    // TODO: take the current step from useCurrentStep() inside this component without PROP-DRILLING
     step,
 }) => {
     const [viewType, setViewType] = useState<'credentials' | 'data'>(
@@ -64,6 +66,7 @@ export const PresentationItem: React.FC<{ data: any; step: number }> = ({
         )
 
         dispatch(
+            // TODO: don't nest things. Put it in a variable and pass it to dispatch
             setCollectionData({
                 inputId: step - 1,
                 credential: {
